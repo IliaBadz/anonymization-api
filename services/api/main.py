@@ -1,6 +1,6 @@
 from copy import deepcopy
 
-from api.spacy_models import load_models
+from api.ml.models.spacy_models import load_models
 from api.ml.models.data_models import EntitiesOut, UserRequestIn
 
 from fastapi import FastAPI
