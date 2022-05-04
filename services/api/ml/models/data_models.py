@@ -4,14 +4,12 @@ from enum import Enum
 
 
 class ModelLanguage(str, Enum):
-    fr = 'fr'
     en = 'en'
 
 
 class ModelSize(str, Enum):
     sm = 'sm'
     md = 'md'
-    lg = 'lg'
 
 
 class UserRequestIn(BaseModel):

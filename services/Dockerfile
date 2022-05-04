@@ -4,14 +4,17 @@ RUN apt-get update \
 	&& apt-get -y install netcat gcc \
 	&& apt-get clean
 
+
+ENV VIRTUAL_ENV=/opt/venv
+RUN python -m venv /opt/venv
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
 RUN  pip install --upgrade pip
-COPY ./requirements.txt .
-RUN pip install -r requirements.txt
 
-RUN python3 -m spacy download fr_core_news_sm \
-	&& python3 -m spacy download en_core_web_sm
+COPY ./requirements.txt /api/
+RUN pip --default-timeout=1000 install -r /api/requirements.txt
 
-COPY ./api /api/api
+COPY ./api api/api
 
 ENV PYTHONPATH=/api
 WORKDIR /api
